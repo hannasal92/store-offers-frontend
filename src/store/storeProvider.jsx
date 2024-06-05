@@ -10,7 +10,8 @@ export const StoreProvider = ({children})=>{
 
     useEffect(()=>{
         const fetchData = async ()=>{
-            const response = await getData()
+            const response = await getData(localStorage.getItem('userId'))
+            console.log(response)
             if(response?.statusCode ==404){
                     setError(response.message || "Something went wrong!");
             }else{
@@ -23,7 +24,7 @@ export const StoreProvider = ({children})=>{
 
 
 const buyOffer=async(id)=> {
-    const response = await editOffer(id)
+    const response = await editOffer(id,localStorage.getItem('userId'))
     setOffers(response)
     return true
   }
