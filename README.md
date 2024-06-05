@@ -1,5 +1,5 @@
 ### Brief
-This project its about a stores that provide offers and every offers has a limit number of purchased that the user can buy .
+This project its about a stores that provides offers and every offers has a limit number of purchased that the user can buy .
 
 
 ## Stack
