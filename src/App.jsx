@@ -10,7 +10,19 @@ function App() {
 
   if(error){
     return (
-      <h1>{error}</h1>
+      <>
+        <Title title="Store`s Offers" />
+        <h1>{error}</h1>
+      </>
+    )
+  }
+
+  if(offers && offers.length === 0){
+    return (
+      <>
+        <Title title="Store`s Offers" />
+        <h1>No Offers For This User</h1>
+      </>
     )
   }
 
