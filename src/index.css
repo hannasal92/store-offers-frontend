@@ -112,15 +112,15 @@ header p {
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 4px;
-  background: #12352f;
-  color: #edfcfa;
+  /* background: #12352f;
+  color: #edfcfa; */
   font-size: 1.2rem;
   cursor: pointer;
 }
 
-.offer button:hover {
+/* .offer button:hover {
   background: #051715;
-}
+} */
 
 .offer h2 {
   font-size: 1.5rem;

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import BuyModal from './BuyModal.jsx';
 import Button from './Button.jsx'
 
@@ -6,9 +6,21 @@ import Button from './Button.jsx'
 
 export default function Offer({ title, limit }) {
   const dialog = useRef();
+  const[offersData, setOffersData] = useState({
+    buyLeft : limit,
+    limit
+  });
+
 
   function buyOffer() {
-    console.log("Buy Offer");
+    const remainBuyOffers = offersData.buyLeft - 1
+
+    setOffersData((prevOfferData) => {
+      return {
+        ...prevOfferData,
+        buyLeft : remainBuyOffers
+      }
+    })
     dialog.current.close();
 
   }
@@ -16,6 +28,14 @@ export default function Offer({ title, limit }) {
   function openDialog() {
     dialog.current.open();
   }
+
+  let buyButton ;
+  if(offersData.buyLeft == 0 ){
+    buyButton = <Button disabled > Buy </Button>
+  }else{
+    buyButton = <Button onClick={openDialog} > Buy </Button>
+  }
+  
   return (
     <>
       <BuyModal
@@ -27,10 +47,10 @@ export default function Offer({ title, limit }) {
         <h2>{title}</h2>
 
         <p>
-          <Button onClick={openDialog}> Buy </Button>
+          {buyButton}
         </p>
         <p >
-         Limit {limit}/{limit}
+         Limit {offersData.buyLeft}/{offersData.limit}
         </p>
       </section>
     </>
