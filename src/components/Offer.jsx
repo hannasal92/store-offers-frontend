@@ -30,13 +30,7 @@ export default function Offer({ title, limit }) {
     dialog.current.open();
   }
 
-  let buyButton ;
-  if(offersData.buyLeft == 0 || maxQuantity == 0){
-    buyButton = <Button disabled > Buy </Button>
-  }else{
-    buyButton = <Button onClick={openDialog} > Buy </Button>
-  }
-  
+
   return (
     <>
       <BuyModal
@@ -46,10 +40,10 @@ export default function Offer({ title, limit }) {
       />
       <section className="offer">
         <h2>{title}</h2>
-
-        <p>
-          {buyButton}
-        </p>
+        <Button 
+         disabled={offersData.buyLeft == 0 || maxQuantity == 0} 
+         style={{cursor:(offersData.buyLeft == 0 || maxQuantity == 0)?"auto":"pointer"}} 
+         onClick={openDialog}>Buy</Button>
         <p >
          Limit {offersData.buyLeft}/{offersData.limit}
         </p>
