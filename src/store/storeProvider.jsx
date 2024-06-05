@@ -7,12 +7,19 @@ export const StoreProvider = ({children})=>{
 
     const [maxQuantity,setMaxQuantity] = useState(null)
     const [offers,setOffers] = useState(null)
+    const [error,setError] = useState(null)
 
     useEffect(()=>{
         const fetchData = async ()=>{
-            const {maxQuantity,offers} = await getData()
-            setOffers(offers)
-            setMaxQuantity(maxQuantity)
+            const response = await getData()
+            if(response?.statusCode ==404){
+                    setError(response.message || "Something went wrong!");
+            }else{
+               
+                setOffers(response.offers)
+                setMaxQuantity(response.maxQuantity)
+            }
+            
         }
         fetchData()
     },[])
@@ -23,6 +30,6 @@ export const StoreProvider = ({children})=>{
     }
 
     return (
-        <StoreContext.Provider value={{maxQuantity,offers,handleMaxBuyQuantity}}>{children}</StoreContext.Provider>
+        <StoreContext.Provider value={{maxQuantity,offers,handleMaxBuyQuantity,error}}>{children}</StoreContext.Provider>
     )
 }

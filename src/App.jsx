@@ -6,9 +6,15 @@ import { StoreContext } from './store/storeProvider.jsx';
 
 function App() {
 
-  const {maxQuantity,offers} = useContext(StoreContext)
+  const {maxQuantity,offers,error} = useContext(StoreContext)
 
   const maxBuyQuantityTitle = "Max Buy Quantity = " + (maxQuantity ?? "...")
+
+  if(error){
+    return (
+      <h1>{error}</h1>
+    )
+  }
 
   return (
     <Fragment>
