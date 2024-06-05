@@ -1,5 +1,5 @@
 import axios from 'axios'
 
-const serviceUrl = "http://localhost:3000/store/offersFile"
+const serviceUrl = import.meta.env.VITE_SERVICE_URL
 
-export const getOffers = ()=>axios.get(serviceUrl).then(res=>res.data).catch(err=>err)
+export const getData = ()=>axios.get(serviceUrl).then(res=>res.data).catch(err=>err)
