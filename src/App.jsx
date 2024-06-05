@@ -10,19 +10,19 @@ function App() {
 
   if(error){
     return (
-      <>
+      <Fragment>
         <Title title="Store`s Offers" />
         <h1>{error}</h1>
-      </>
+      </Fragment>
     )
   }
 
   if(offers && offers.length === 0){
     return (
-      <>
+      <Fragment>
         <Title title="Store`s Offers" />
         <h1>No Offers For This User</h1>
-      </>
+      </Fragment>
     )
   }
 
