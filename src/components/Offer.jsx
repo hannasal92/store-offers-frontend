@@ -23,10 +23,10 @@ export default function Offer({offer}) {
       <BuyModal
         ref={dialog}
         buyOffer={handleBuyOffer}
-        title={offer.title}
+        title={offer.name}
       />
       <section className="offer">
-        <h2>{offer.title}</h2>
+        <h2>{offer.name}</h2>
         <Button 
          disabled={offer.buyLeft == 0} 
          style={{cursor:(offer.buyLeft == 0)?"auto":"pointer"}} 
