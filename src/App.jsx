@@ -8,7 +8,7 @@ function App() {
 
   const {maxQuantity,offers} = useContext(StoreContext)
 
-  const maxBuyQuantityTitle = "Max Buy Quantity = " + maxQuantity
+  const maxBuyQuantityTitle = "Max Buy Quantity = " + (maxQuantity ?? "...")
 
   return (
     <Fragment>
