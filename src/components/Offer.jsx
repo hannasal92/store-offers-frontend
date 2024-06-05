@@ -1,10 +1,11 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useContext } from 'react';
 import BuyModal from './BuyModal.jsx';
 import Button from './Button.jsx'
-
-// let timer;
+import { MaxBuyQuantity } from '../store/max-buy-quantity.jsx';
 
 export default function Offer({ title, limit }) {
+  const { maxBuyQuantity, updateMaxBuyQuantity } = useContext(MaxBuyQuantity);
+  const maxBuyQuantityValue = maxBuyQuantity.maxBuyQuantity ;
   const dialog = useRef();
   const[offersData, setOffersData] = useState({
     buyLeft : limit,
@@ -14,7 +15,7 @@ export default function Offer({ title, limit }) {
 
   function buyOffer() {
     const remainBuyOffers = offersData.buyLeft - 1
-
+    updateMaxBuyQuantity();
     setOffersData((prevOfferData) => {
       return {
         ...prevOfferData,
@@ -30,7 +31,7 @@ export default function Offer({ title, limit }) {
   }
 
   let buyButton ;
-  if(offersData.buyLeft == 0 ){
+  if(offersData.buyLeft == 0 || maxBuyQuantityValue == 0){
     buyButton = <Button disabled > Buy </Button>
   }else{
     buyButton = <Button onClick={openDialog} > Buy </Button>
