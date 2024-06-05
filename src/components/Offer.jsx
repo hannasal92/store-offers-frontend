@@ -3,7 +3,8 @@ import BuyModal from './BuyModal.jsx';
 import Button from './Button.jsx'
 import { StoreContext } from '../store/storeProvider.jsx';
 
-export default function Offer({offer}) {
+export default function Offer({ offer }) {
+
   const {buyOffer} = useContext(StoreContext)
   
   const dialog = useRef();
@@ -17,7 +18,6 @@ export default function Offer({offer}) {
     dialog.current.close()
   }
 
-
   return (
     <>
       <BuyModal
@@ -25,16 +25,16 @@ export default function Offer({offer}) {
         buyOffer={handleBuyOffer}
         title={offer.name}
       />
-      <section className="offer">
-        <h2>{offer.name}</h2>
-        <Button 
-         disabled={offer.buyLeft == 0} 
-         style={{cursor:(offer.buyLeft == 0)?"auto":"pointer"}} 
-         onClick={openDialog}>Buy</Button>
-        <p >
-         Limit {offer.buyLeft}/{offer.limit}
-        </p>
-      </section>
+        <section className="offer">
+          <h2>{offer.name}</h2>
+          <Button 
+            disabled={offer.buyLeft == 0} 
+            style={{cursor:(offer.buyLeft == 0)?"auto":"pointer"}} 
+            onClick={openDialog}>Buy</Button>
+          <p >
+          Limit {offer.buyLeft}/{offer.limit}
+          </p>
+        </section>
     </>
   );
 }

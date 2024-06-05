@@ -6,7 +6,7 @@ import { StoreContext } from './store/storeProvider.jsx';
 
 function App() {
 
-  const {offers,error} = useContext(StoreContext)
+  const {offers, error} = useContext(StoreContext)
 
   if(error){
     return (
