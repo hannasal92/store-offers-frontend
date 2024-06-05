@@ -1,11 +1,10 @@
 import { createContext,useState,useEffect } from "react";
-import { getData } from "../data/axios";
+import { editOffer, getData } from "../data/axios";
 
 export const StoreContext = createContext(null)
 
 export const StoreProvider = ({children})=>{
 
-    const [maxQuantity,setMaxQuantity] = useState(null)
     const [offers,setOffers] = useState(null)
     const [error,setError] = useState(null)
 
@@ -15,21 +14,22 @@ export const StoreProvider = ({children})=>{
             if(response?.statusCode ==404){
                     setError(response.message || "Something went wrong!");
             }else{
-               
                 setOffers(response.offers)
-                setMaxQuantity(response.maxQuantity)
             }
-            
         }
         fetchData()
     },[])
 
 
-    const handleMaxBuyQuantity=()=> {
-        setMaxQuantity((prev)=>prev-1)
-    }
+
+const buyOffer=async(id)=> {
+    const response = await editOffer(id)
+    setOffers(response)
+    return true
+  }
+
 
     return (
-        <StoreContext.Provider value={{maxQuantity,offers,handleMaxBuyQuantity,error}}>{children}</StoreContext.Provider>
+        <StoreContext.Provider value={{offers,error,buyOffer}}>{children}</StoreContext.Provider>
     )
 }

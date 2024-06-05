@@ -6,9 +6,7 @@ import { StoreContext } from './store/storeProvider.jsx';
 
 function App() {
 
-  const {maxQuantity,offers,error} = useContext(StoreContext)
-
-  const maxBuyQuantityTitle = "Max Buy Quantity = " + (maxQuantity ?? "...")
+  const {offers,error} = useContext(StoreContext)
 
   if(error){
     return (
@@ -19,14 +17,13 @@ function App() {
   return (
     <Fragment>
       <Title title="Store`s Offers" />
-      <Title title= {maxBuyQuantityTitle}/>
       <div id="offers">
         {
           !offers?
           <h1>Loading..</h1>
           :
           offers.map((offer) => {
-            return <Offer key={offer.id} title={offer.name} limit={offer.limit}/>
+            return <Offer key={offer.id} offer={offer}/>
           })
         }
       </div>
